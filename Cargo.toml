@@ -1,0 +1,19 @@
+[package]
+name = "vista"
+version = "0.0.0"
+edition = "2024"
+license = "MIT"
+repository = "https://github.com/FreddyWordingham/vista"
+description = "A utility library for displaying and formatting arrays, matrices and tensors in the terminal."
+keywords = ["display", "formatting", "matrix", "ndarray", "visualization"]
+categories = [
+    "command-line-utilities",
+    "data-structures",
+    "development-tools",
+    "science",
+    "visualization",
+]
+
+
+[dependencies]
+ndarray = "0.16.1"
