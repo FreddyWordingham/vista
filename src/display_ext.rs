@@ -8,13 +8,27 @@ use crate::{DisplayArray, display_method::DisplayMethod};
 
 /// Common trait for displayable arrays.
 pub trait DisplayExt<T: RawData, D> {
-    /// Construct a `DisplayArray` type for the given array.
+    /// Construct a `DisplayArray` type for the given data.
     fn display<M: DisplayMethod>(&self) -> DisplayArray<'_, T, D, M>;
 }
 
 impl<T: RawData, D> DisplayExt<T, D> for ArrayBase<T, D> {
     #[inline]
     fn display<M: DisplayMethod>(&self) -> DisplayArray<'_, T, D, M> {
-        DisplayArray::new(self)
+        DisplayArray::new(vec![&self])
+    }
+}
+
+impl<T: RawData, D, const N: usize> DisplayExt<T, D> for [&ArrayBase<T, D>; N] {
+    #[inline]
+    fn display<M: DisplayMethod>(&self) -> DisplayArray<'_, T, D, M> {
+        DisplayArray::new(self.to_vec())
+    }
+}
+
+impl<T: RawData, D> DisplayExt<T, D> for &[&ArrayBase<T, D>] {
+    #[inline]
+    fn display<M: DisplayMethod>(&self) -> DisplayArray<'_, T, D, M> {
+        DisplayArray::new(self.to_vec())
     }
 }

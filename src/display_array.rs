@@ -11,7 +11,7 @@ use crate::display_method::DisplayMethod;
 #[non_exhaustive]
 pub struct DisplayArray<'a, T: RawData, D, M: DisplayMethod> {
     /// The array to be displayed.
-    pub array: &'a ArrayBase<T, D>,
+    pub arrays: Vec<&'a ArrayBase<T, D>>,
     /// Marker to hold the display method type.
     pub _phantom: PhantomData<M>,
 }
@@ -19,9 +19,9 @@ pub struct DisplayArray<'a, T: RawData, D, M: DisplayMethod> {
 impl<'a, T: RawData, D, M: DisplayMethod> DisplayArray<'a, T, D, M> {
     /// Construct a new `DisplayArray` instance referring to the given array.
     #[inline]
-    pub const fn new(array: &'a ArrayBase<T, D>) -> Self {
+    pub const fn new(arrays: Vec<&'a ArrayBase<T, D>>) -> Self {
         DisplayArray {
-            array,
+            arrays,
             _phantom: PhantomData,
         }
     }
