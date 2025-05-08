@@ -18,6 +18,7 @@ pub struct DisplayArray<'a, T: RawData, D, M: DisplayMethod> {
 
 impl<'a, T: RawData, D, M: DisplayMethod> DisplayArray<'a, T, D, M> {
     /// Construct a new `DisplayArray` instance referring to the given array.
+    #[must_use]
     #[inline]
     pub const fn new(arrays: Vec<&'a ArrayBase<T, D>>) -> Self {
         DisplayArray {

@@ -38,7 +38,7 @@
 #![deny(trivial_numeric_casts)]
 #![deny(unit_bindings)]
 #![deny(unreachable_code)]
-#![deny(unreachable_pub)]
+// #![deny(unreachable_pub)]
 #![deny(unsafe_attr_outside_unsafe)]
 #![deny(unsafe_code)]
 #![deny(unsafe_op_in_unsafe_fn)]
@@ -97,7 +97,11 @@
 #![allow(clippy::question_mark_used, reason = "The question mark operator is idiomatic in Rust.")]
 #![allow(
     clippy::separated_literal_suffix,
-    reason = "Must chose between separated and unseparated literal suffixes."
+    reason = "Must chose between separated and adjoined literal suffixes."
+)]
+#![allow(
+    clippy::single_call_fn,
+    reason = "Single call functions may improve read- and maintainability."
 )]
 #![allow(
     clippy::single_char_lifetime_names,
@@ -110,6 +114,7 @@
 )]
 #![allow(clippy::unwrap_in_result, reason = "In some cases unwrap can be guaranteed to succeed.")]
 #![allow(clippy::unwrap_used, reason = "In some cases unwrap can be guaranteed to succeed.")]
+#![allow(clippy::use_debug, reason = "Debug prints are used in error messages.")]
 
 mod display_array;
 mod display_ext;
